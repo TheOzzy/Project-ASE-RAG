@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1003760863678",
+    "project_id": "ase-rag-status",
+    "storage_bucket": "ase-rag-status.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1003760863678:android:8fda1f307ec8824a6311ef",
+        "android_client_info": {
+          "package_name": "com.example.ase_rag"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMCAOv9NSeUxHgsXOhzNF1F20G-PQ9PeI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
