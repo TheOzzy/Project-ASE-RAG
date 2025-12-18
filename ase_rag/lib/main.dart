@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'screens/login_screen.dart';
 import 'screens/register_screen.dart';
+import 'screens/app_shell.dart';
 
-// NOTE: Dashboard is in THIS file as RAGStatusApp (Scaffold), not MaterialApp.
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-void main() {
+  await Supabase.initialize(
+    url: 'https://daouiaglnzgdowhfjcwq.supabase.co',
+    anonKey:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRhb3VpYWdsbnpnZG93aGZqY3dxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjYwMzc4NjgsImV4cCI6MjA4MTYxMzg2OH0.r2AkbhOgwo4NcSyE0d0yfIXphjxCqY2aUDusx5uVj14',
+  );
+
   runApp(const AppRoot());
 }
 
@@ -60,40 +68,20 @@ class AppRoot extends StatelessWidget {
           ),
         ),
       ),
+
+      // Start at login
       initialRoute: '/login',
+
       routes: {
         '/login': (_) => const LoginScreen(),
         '/register': (_) => const RegisterationScreen(),
-        '/dashboard': (_) => const RAGStatusApp(), // ✅ dashboard is a SCREEN now
+
+        // ✅ This is your "main app" container with bottom nav
+        '/app': (_) => const AppShell(),
+
+        // Optional alias if you already use /dashboard in LoginScreen:
+        '/dashboard': (_) => const AppShell(),
       },
-    );
-  }
-}
-
-// -------------------------------
-// DASHBOARD SCREEN (IN main.dart)
-// -------------------------------
-class RAGStatusApp extends StatelessWidget {
-  const RAGStatusApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    // Replace this Scaffold with your full dashboard UI if you want.
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('RAG Status'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: () {
-              Navigator.pushNamedAndRemoveUntil(context, '/login', (r) => false);
-            },
-          )
-        ],
-      ),
-      body: const Center(
-        child: Text('Dashboard'),
-      ),
     );
   }
 }
